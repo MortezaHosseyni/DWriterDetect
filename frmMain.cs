@@ -33,7 +33,11 @@ namespace DWriterDetect
 
         private void btn_Browse_Click(object sender, EventArgs e)
         {
+            FolderBrowserDialog savePath = new FolderBrowserDialog();
+            savePath.Description = "DVD Save path";
+            savePath.ShowDialog();
 
+            txt_SavePath.Text = savePath.SelectedPath;
         }
     }
 }
