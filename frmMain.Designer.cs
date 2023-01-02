@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lbl_AppTitle = new System.Windows.Forms.Label();
             this.lbl_Programmer = new System.Windows.Forms.Label();
-            this.txt_SavePath = new System.Windows.Forms.TextBox();
             this.lbl_SavePath = new System.Windows.Forms.Label();
             this.btn_Browse = new System.Windows.Forms.Button();
             this.txt_SaveName = new System.Windows.Forms.TextBox();
@@ -50,6 +49,7 @@
             this.ctx_CurrentFolder = new System.Windows.Forms.ToolStripStatusLabel();
             this.pgb_SaveFolderProgress = new System.Windows.Forms.ProgressBar();
             this.checkTimer = new System.Windows.Forms.Timer(this.components);
+            this.txt_SavePath = new System.Windows.Forms.ComboBox();
             this.sst_BottomBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +57,7 @@
             // 
             this.lbl_AppTitle.AutoSize = true;
             this.lbl_AppTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.lbl_AppTitle.Location = new System.Drawing.Point(280, 26);
+            this.lbl_AppTitle.Location = new System.Drawing.Point(268, 29);
             this.lbl_AppTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_AppTitle.Name = "lbl_AppTitle";
             this.lbl_AppTitle.Size = new System.Drawing.Size(169, 29);
@@ -68,24 +68,17 @@
             // 
             this.lbl_Programmer.AutoSize = true;
             this.lbl_Programmer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbl_Programmer.Location = new System.Drawing.Point(362, 53);
+            this.lbl_Programmer.Location = new System.Drawing.Point(350, 56);
             this.lbl_Programmer.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_Programmer.Name = "lbl_Programmer";
             this.lbl_Programmer.Size = new System.Drawing.Size(136, 17);
             this.lbl_Programmer.TabIndex = 0;
             this.lbl_Programmer.Text = "by Morteza Hosseini";
             // 
-            // txt_SavePath
-            // 
-            this.txt_SavePath.Location = new System.Drawing.Point(219, 125);
-            this.txt_SavePath.Name = "txt_SavePath";
-            this.txt_SavePath.Size = new System.Drawing.Size(335, 29);
-            this.txt_SavePath.TabIndex = 1;
-            // 
             // lbl_SavePath
             // 
             this.lbl_SavePath.AutoSize = true;
-            this.lbl_SavePath.Location = new System.Drawing.Point(119, 128);
+            this.lbl_SavePath.Location = new System.Drawing.Point(18, 125);
             this.lbl_SavePath.Name = "lbl_SavePath";
             this.lbl_SavePath.Size = new System.Drawing.Size(94, 24);
             this.lbl_SavePath.TabIndex = 2;
@@ -93,25 +86,25 @@
             // 
             // btn_Browse
             // 
-            this.btn_Browse.Location = new System.Drawing.Point(560, 125);
+            this.btn_Browse.Location = new System.Drawing.Point(621, 122);
             this.btn_Browse.Name = "btn_Browse";
-            this.btn_Browse.Size = new System.Drawing.Size(34, 29);
-            this.btn_Browse.TabIndex = 3;
+            this.btn_Browse.Size = new System.Drawing.Size(34, 32);
+            this.btn_Browse.TabIndex = 2;
             this.btn_Browse.Text = "...";
             this.btn_Browse.UseVisualStyleBackColor = true;
             this.btn_Browse.Click += new System.EventHandler(this.btn_Browse_Click);
             // 
             // txt_SaveName
             // 
-            this.txt_SaveName.Location = new System.Drawing.Point(219, 160);
+            this.txt_SaveName.Location = new System.Drawing.Point(118, 160);
             this.txt_SaveName.Name = "txt_SaveName";
-            this.txt_SaveName.Size = new System.Drawing.Size(335, 29);
-            this.txt_SaveName.TabIndex = 2;
+            this.txt_SaveName.Size = new System.Drawing.Size(497, 29);
+            this.txt_SaveName.TabIndex = 3;
             // 
             // lbl_SaveName
             // 
             this.lbl_SaveName.AutoSize = true;
-            this.lbl_SaveName.Location = new System.Drawing.Point(152, 163);
+            this.lbl_SaveName.Location = new System.Drawing.Point(51, 163);
             this.lbl_SaveName.Name = "lbl_SaveName";
             this.lbl_SaveName.Size = new System.Drawing.Size(61, 24);
             this.lbl_SaveName.TabIndex = 2;
@@ -149,19 +142,19 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(118, 233);
+            this.btn_Save.Location = new System.Drawing.Point(12, 233);
             this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(497, 33);
-            this.btn_Save.TabIndex = 3;
+            this.btn_Save.Size = new System.Drawing.Size(719, 33);
+            this.btn_Save.TabIndex = 4;
             this.btn_Save.Text = "Save";
             this.btn_Save.UseVisualStyleBackColor = true;
             this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
             // pgb_SaveFileProgress
             // 
-            this.pgb_SaveFileProgress.Location = new System.Drawing.Point(118, 272);
+            this.pgb_SaveFileProgress.Location = new System.Drawing.Point(12, 272);
             this.pgb_SaveFileProgress.Name = "pgb_SaveFileProgress";
-            this.pgb_SaveFileProgress.Size = new System.Drawing.Size(243, 33);
+            this.pgb_SaveFileProgress.Size = new System.Drawing.Size(369, 33);
             this.pgb_SaveFileProgress.TabIndex = 6;
             // 
             // bgWorker
@@ -200,20 +193,29 @@
             // 
             // pgb_SaveFolderProgress
             // 
-            this.pgb_SaveFolderProgress.Location = new System.Drawing.Point(367, 272);
+            this.pgb_SaveFolderProgress.Location = new System.Drawing.Point(387, 272);
             this.pgb_SaveFolderProgress.Name = "pgb_SaveFolderProgress";
-            this.pgb_SaveFolderProgress.Size = new System.Drawing.Size(248, 33);
+            this.pgb_SaveFolderProgress.Size = new System.Drawing.Size(344, 33);
             this.pgb_SaveFolderProgress.TabIndex = 6;
             // 
             // checkTimer
             // 
             this.checkTimer.Tick += new System.EventHandler(this.checkTimer_Tick);
             // 
+            // txt_SavePath
+            // 
+            this.txt_SavePath.FormattingEnabled = true;
+            this.txt_SavePath.Location = new System.Drawing.Point(118, 122);
+            this.txt_SavePath.Name = "txt_SavePath";
+            this.txt_SavePath.Size = new System.Drawing.Size(497, 32);
+            this.txt_SavePath.TabIndex = 1;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(743, 356);
+            this.Controls.Add(this.txt_SavePath);
             this.Controls.Add(this.pgb_SaveFolderProgress);
             this.Controls.Add(this.pgb_SaveFileProgress);
             this.Controls.Add(this.btn_Save);
@@ -222,7 +224,6 @@
             this.Controls.Add(this.lbl_SaveName);
             this.Controls.Add(this.lbl_SavePath);
             this.Controls.Add(this.txt_SaveName);
-            this.Controls.Add(this.txt_SavePath);
             this.Controls.Add(this.lbl_Programmer);
             this.Controls.Add(this.lbl_AppTitle);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
@@ -245,7 +246,6 @@
 
         private System.Windows.Forms.Label lbl_AppTitle;
         private System.Windows.Forms.Label lbl_Programmer;
-        private System.Windows.Forms.TextBox txt_SavePath;
         private System.Windows.Forms.Label lbl_SavePath;
         private System.Windows.Forms.Button btn_Browse;
         private System.Windows.Forms.TextBox txt_SaveName;
@@ -263,6 +263,7 @@
         private System.Windows.Forms.ToolStripStatusLabel ctx_CurrentFolder;
         private System.Windows.Forms.ProgressBar pgb_SaveFolderProgress;
         private System.Windows.Forms.Timer checkTimer;
+        private System.Windows.Forms.ComboBox txt_SavePath;
     }
 }
 
