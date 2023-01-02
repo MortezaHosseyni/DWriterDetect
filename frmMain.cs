@@ -55,7 +55,7 @@ namespace DWriterDetect
             var driveWatcher = new DriveWatcher();
             driveWatcher.OpticalDiskArrived += DriveWatcherOnOpticalDiskArrived;
             driveWatcher.Start();
-            toDay = $"{pc.GetYear(DateTime.Now)}_{pc.GetMonth(DateTime.Now)}_{pc.GetDayOfMonth(DateTime.Now)}__{pc.GetHour(DateTime.Now)}_{pc.GetMinute(DateTime.Now)}_{pc.GetSecond(DateTime.Now)}";
+            toDay = $"{pc.GetYear(DateTime.Now)}_{pc.GetMonth(DateTime.Now)}_{pc.GetDayOfMonth(DateTime.Now)}";
         }
 
         private void DriveWatcherOnOpticalDiskArrived(object sender, OpticalDiskArrivedEventArgs e)
@@ -92,7 +92,7 @@ namespace DWriterDetect
                 if (btn_Save.Text == "Save")
                 {
                     string name = txt_SaveName.Text.Replace(" ", "_");
-                    string target = $"{txt_SavePath.Text.Trim()}\\{toDay}__{name}\\";
+                    string target = $"{txt_SavePath.Text.Trim()}\\{toDay}\\{pc.GetHour(DateTime.Now)}_{pc.GetMinute(DateTime.Now)}_{pc.GetSecond(DateTime.Now)}__{name}\\";
                     sourcePath = dvdRoot;
                     targetPath = target;
                     btn_Save.Text = "Cancel";
