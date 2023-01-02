@@ -30,6 +30,14 @@ namespace DWriterDetect
         private void frmMain_Load(object sender, EventArgs e)
         {
 
+            if (File.Exists("paths.txt"))
+            {
+                foreach (var line in File.ReadLines("paths.txt"))
+                {
+                    txt_SavePath.Items.Add(line);
+                }
+            }
+
             checkTimer.Tick += new EventHandler(checkTimer_Tick);
             checkTimer.Interval = 1000; // in miliseconds
             checkTimer.Start();
@@ -72,6 +80,7 @@ namespace DWriterDetect
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
+            File.AppendAllText("paths.txt", txt_SavePath.Text.Trim() + "\n");
             if (ctx_WriterStatus.Text != "Detected")
             {
                 MessageBox.Show("Enter your dvd in dvd writer", "DVD Not Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);

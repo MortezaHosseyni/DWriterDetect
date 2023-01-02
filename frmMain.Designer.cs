@@ -229,6 +229,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(759, 395);
             this.MinimumSize = new System.Drawing.Size(759, 395);
             this.Name = "frmMain";
