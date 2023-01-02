@@ -81,12 +81,19 @@ namespace DWriterDetect
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            foreach (var line in File.ReadLines("paths.txt"))
+            if (File.Exists("paths.txt"))
             {
-                if (line != txt_SavePath.Text.Trim())
+                foreach (var line in File.ReadLines("paths.txt"))
                 {
-                    File.AppendAllText("paths.txt", txt_SavePath.Text.Trim() + "\n");
+                    if (line != txt_SavePath.Text.Trim())
+                    {
+                        File.AppendAllText("paths.txt", txt_SavePath.Text.Trim() + "\n");
+                    }
                 }
+            }
+            else
+            {
+                File.Create("paths.txt");
             }
 
             if (ctx_WriterStatus.Text != "Detected")
