@@ -12,6 +12,7 @@ namespace DWriterDetect
 {
     public partial class frmMain : Form
     {
+        string dvdRoot = "";
 
         public frmMain()
         {
@@ -29,6 +30,8 @@ namespace DWriterDetect
         {
             ctx_WriterStatus.ForeColor = Color.Green;
             ctx_WriterStatus.Text = "Detected";
+
+            dvdRoot = e.Drive.RootDirectory.FullName;
         }
 
         private void btn_Browse_Click(object sender, EventArgs e)
@@ -38,6 +41,24 @@ namespace DWriterDetect
             savePath.ShowDialog();
 
             txt_SavePath.Text = savePath.SelectedPath;
+        }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            if (checkField() && dvdRoot != "")
+            {
+
+            }
+        }
+
+        private bool checkField()
+        {
+            if (txt_SaveName.Text.Trim() == "" || txt_SavePath.Text.Trim() == "")
+            {
+                MessageBox.Show("Name or path filed is empty", "Empty Fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
         }
     }
 }
