@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace DWriterDetect
             checkTimer.Start();
 
             var drive = DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.CDRom).SingleOrDefault();
-            if (drive != null)
+            if (Directory.Exists(drive.RootDirectory.FullName))
             {
                 ctx_WriterStatus.ForeColor = Color.Green;
                 ctx_WriterStatus.Text = "Detected";
@@ -165,11 +166,32 @@ namespace DWriterDetect
                 }
 
                 this.Invoke(new Action(() => { ctx_CurrentFile.Text = "Files loaded!"; }));
+                this.Invoke(new Action(() => { btn_Save.Text = "Save"; }));
+                this.Invoke(new Action(() => { pgb_SaveFolderProgress.Value = 0; }));
+                this.Invoke(new Action(() => { pgb_SaveFileProgress.Value = 0; }));
+
+                if (MessageBox.Show("All files saved!\nDo you want the DVD writer to be ejected?", "Files Saved", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                {
+                    closeDvd();
+                }
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message, "Copy error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+        private static void closeDvd()
+        {
+            int ret = mciSendString("set cdaudio door open", null, 0, IntPtr.Zero);
+        }
+
+        [DllImport("winmm.dll", EntryPoint = "mciSendStringA", CharSet = CharSet.Ansi)]
+        protected static extern int mciSendString(string lpstrCommand,
+                                                   StringBuilder lpstrReturnString,
+                                                   int uReturnLength,
+                                                   IntPtr hwndCallback);
     }
 }
