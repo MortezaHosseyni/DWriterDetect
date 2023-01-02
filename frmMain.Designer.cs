@@ -89,6 +89,7 @@
             this.btn_Browse.TabIndex = 3;
             this.btn_Browse.Text = "...";
             this.btn_Browse.UseVisualStyleBackColor = true;
+            this.btn_Browse.Click += new System.EventHandler(this.btn_Browse_Click);
             // 
             // txt_SaveName
             // 
@@ -166,6 +167,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frmMain";
             this.Text = "Dwriter Detect";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.sst_BottomBar.ResumeLayout(false);
             this.sst_BottomBar.PerformLayout();
             this.ResumeLayout(false);
