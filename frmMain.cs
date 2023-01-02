@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -80,7 +81,14 @@ namespace DWriterDetect
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            File.AppendAllText("paths.txt", txt_SavePath.Text.Trim() + "\n");
+            foreach (var line in File.ReadLines("paths.txt"))
+            {
+                if (line != txt_SavePath.Text.Trim())
+                {
+                    File.AppendAllText("paths.txt", txt_SavePath.Text.Trim() + "\n");
+                }
+            }
+
             if (ctx_WriterStatus.Text != "Detected")
             {
                 MessageBox.Show("Enter your dvd in dvd writer", "DVD Not Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -154,6 +162,8 @@ namespace DWriterDetect
                         this.Invoke(new Action(() => { btn_Save.Text = "Save"; }));
                         this.Invoke(new Action(() => { pgb_SaveFolderProgress.Value = 0; }));
                         this.Invoke(new Action(() => { pgb_SaveFileProgress.Value = 0; }));
+                        Application.Restart();
+                        Environment.Exit(0);
                         return;
                     }
                     Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
@@ -175,6 +185,8 @@ namespace DWriterDetect
                         this.Invoke(new Action(() => { btn_Save.Text = "Save"; }));
                         this.Invoke(new Action(() => { pgb_SaveFolderProgress.Value = 0; }));
                         this.Invoke(new Action(() => { pgb_SaveFileProgress.Value = 0; }));
+                        Application.Restart();
+                        Environment.Exit(0);
                         return;
                     }
                     File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
@@ -196,7 +208,21 @@ namespace DWriterDetect
             }
         }
 
-
+        static void RestartApp(int pid, string applicationName)
+        {
+            // Wait for the process to terminate
+            Process process = null;
+            try
+            {
+                process = Process.GetProcessById(pid);
+                process.WaitForExit(1000);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Cannot restart app.", "Restart Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            Process.Start(applicationName, "");
+        }
 
         private static void closeDvd()
         {
@@ -209,4 +235,6 @@ namespace DWriterDetect
                                                    int uReturnLength,
                                                    IntPtr hwndCallback);
     }
+
+    
 }
