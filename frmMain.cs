@@ -28,6 +28,11 @@ namespace DWriterDetect
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+
+            checkTimer.Tick += new EventHandler(checkTimer_Tick);
+            checkTimer.Interval = 1000; // in miliseconds
+            checkTimer.Start();
+
             var drive = DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.CDRom).SingleOrDefault();
             if (drive != null)
             {
@@ -50,7 +55,9 @@ namespace DWriterDetect
             ctx_WriterStatus.Text = "Detected";
 
             dvdRoot = e.Drive.RootDirectory.FullName;
-            pgb_SaveFileProgress.Maximum = e.Drive.RootDirectory.GetFiles().Length;
+            pgb_SaveFileProgress.Maximum = System.IO.Directory.GetFiles(e.Drive.RootDirectory.FullName, "*.*", SearchOption.AllDirectories).Count();
+            pgb_SaveFolderProgress.Maximum = System.IO.Directory.GetDirectories(e.Drive.RootDirectory.FullName, "*", SearchOption.AllDirectories).Count();
+
         }
 
         private void btn_Browse_Click(object sender, EventArgs e)
@@ -111,6 +118,15 @@ namespace DWriterDetect
                 return false;
             }
             return true;
+        }
+
+        private void checkTimer_Tick(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(dvdRoot))
+            {
+                ctx_WriterStatus.ForeColor = Color.Red;
+                ctx_WriterStatus.Text = "Not Detected";
+            }
         }
 
         private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
