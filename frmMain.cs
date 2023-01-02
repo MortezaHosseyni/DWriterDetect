@@ -151,6 +151,9 @@ namespace DWriterDetect
                     if (this.bgWorker.CancellationPending)
                     {
                         e.Cancel = true;
+                        this.Invoke(new Action(() => { btn_Save.Text = "Save"; }));
+                        this.Invoke(new Action(() => { pgb_SaveFolderProgress.Value = 0; }));
+                        this.Invoke(new Action(() => { pgb_SaveFileProgress.Value = 0; }));
                         return;
                     }
                     Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
@@ -169,6 +172,9 @@ namespace DWriterDetect
                     if (this.bgWorker.CancellationPending)
                     {
                         e.Cancel = true;
+                        this.Invoke(new Action(() => { btn_Save.Text = "Save"; }));
+                        this.Invoke(new Action(() => { pgb_SaveFolderProgress.Value = 0; }));
+                        this.Invoke(new Action(() => { pgb_SaveFileProgress.Value = 0; }));
                         return;
                     }
                     File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
