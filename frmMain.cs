@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +17,9 @@ namespace DWriterDetect
     {
         public string dvdRoot = "";
         public string toDay = "";
+
+        public string sourcePath, targetPath;
+
         PersianCalendar pc = new PersianCalendar();
         public frmMain()
         {
@@ -24,6 +28,16 @@ namespace DWriterDetect
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            var drive = DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.CDRom).SingleOrDefault();
+            if (drive != null)
+            {
+                ctx_WriterStatus.ForeColor = Color.Green;
+                ctx_WriterStatus.Text = "Detected";
+                dvdRoot = drive.RootDirectory.FullName;
+                pgb_SaveFileProgress.Maximum = System.IO.Directory.GetFiles(drive.RootDirectory.FullName, "*.*", SearchOption.AllDirectories).Count();
+                pgb_SaveFolderProgress.Maximum = System.IO.Directory.GetDirectories(drive.RootDirectory.FullName, "*", SearchOption.AllDirectories).Count();
+            }
+
             var driveWatcher = new DriveWatcher();
             driveWatcher.OpticalDiskArrived += DriveWatcherOnOpticalDiskArrived;
             driveWatcher.Start();
@@ -36,7 +50,7 @@ namespace DWriterDetect
             ctx_WriterStatus.Text = "Detected";
 
             dvdRoot = e.Drive.RootDirectory.FullName;
-            pgb_SaveProgress.Maximum = e.Drive.RootDirectory.GetFiles().Length;
+            pgb_SaveFileProgress.Maximum = e.Drive.RootDirectory.GetFiles().Length;
         }
 
         private void btn_Browse_Click(object sender, EventArgs e)
@@ -44,50 +58,102 @@ namespace DWriterDetect
             FolderBrowserDialog savePath = new FolderBrowserDialog();
             savePath.Description = "DVD Save path";
             savePath.ShowDialog();
-            
+
             txt_SavePath.Text = savePath.SelectedPath;
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
+            if (ctx_WriterStatus.Text != "Detected")
+            {
+                MessageBox.Show("Enter your dvd in dvd writer", "DVD Not Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (checkField() && dvdRoot != "")
             {
-                string name = txt_SaveName.Text.Replace(" ", "_");
-                string target = $"{txt_SavePath.Text.Trim()}\\{toDay}_{name}";
-                CopyFilesRecursively(dvdRoot, target);
+                if (btn_Save.Text == "Save")
+                {
+                    string name = txt_SaveName.Text.Replace(" ", "_");
+                    string target = $"{txt_SavePath.Text.Trim()}\\{toDay}_{name}\\";
+                    sourcePath = dvdRoot;
+                    targetPath = target;
+                    btn_Save.Text = "Cancel";
+
+                    bgWorker = new BackgroundWorker();
+                    bgWorker.WorkerReportsProgress = true;
+                    bgWorker.WorkerSupportsCancellation = true;
+                    bgWorker.DoWork += new DoWorkEventHandler(bgWorker_DoWork);
+                    bgWorker.RunWorkerAsync();
+                }
+                else
+                {
+                    if (MessageBox.Show("Are you sure?", "Cancel Progress", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        bgWorker.CancelAsync();
+                        btn_Save.Text = "Save";
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Name or path field is empty", "Empty Fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
         }
 
-
-        private void CopyFilesRecursively(string sourcePath, string targetPath)
-        {
-            try
-            {
-                foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
-                {
-                    Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
-                }
-
-                foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
-                {
-                    File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
-                    pgb_SaveProgress.Value = +1;
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message, "Copy error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private bool checkField()
         {
             if (txt_SaveName.Text.Trim() == "" || txt_SavePath.Text.Trim() == "")
             {
-                MessageBox.Show("Name or path filed is empty", "Empty Fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
+        }
+
+        private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
+                {
+                    Thread.Sleep(60);
+                    this.Invoke(new Action(() => { pgb_SaveFolderProgress.Value += 1; }));
+                    this.Invoke(new Action(() => { ctx_CurrentFolder.Text = dirPath.Split('\\').Last(); }));
+                    if (this.bgWorker.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
+                }
+
+                this.Invoke(new Action(() => { ctx_CurrentFolder.Text = "Folders loaded!"; }));
+
+
+                foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
+                {
+                    Thread.Sleep(40);
+                    this.Invoke(new Action(() => { pgb_SaveFileProgress.Value += 1; }));
+                    var fileSize = new FileInfo(newPath).Length * Math.Pow(10, -6);
+                    this.Invoke(new Action(() => { ctx_CurrentFile.Text = $"{newPath.Split('\\').Last()}({Math.Round(fileSize, 2)} MB)"; }));
+
+                    if (this.bgWorker.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
+                }
+
+                this.Invoke(new Action(() => { ctx_CurrentFile.Text = "Files loaded!"; }));
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Copy error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

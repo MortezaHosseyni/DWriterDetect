@@ -39,7 +39,14 @@
             this.lbl_WriterStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.ctx_WriterStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.btn_Save = new System.Windows.Forms.Button();
-            this.pgb_SaveProgress = new System.Windows.Forms.ProgressBar();
+            this.pgb_SaveFileProgress = new System.Windows.Forms.ProgressBar();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.lbl_Between = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbl_CurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ctx_CurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbl_CurrentFolder = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ctx_CurrentFolder = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pgb_SaveFolderProgress = new System.Windows.Forms.ProgressBar();
             this.sst_BottomBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,7 +118,12 @@
             // 
             this.sst_BottomBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lbl_WriterStatus,
-            this.ctx_WriterStatus});
+            this.ctx_WriterStatus,
+            this.lbl_Between,
+            this.lbl_CurrentFile,
+            this.ctx_CurrentFile,
+            this.lbl_CurrentFolder,
+            this.ctx_CurrentFolder});
             this.sst_BottomBar.Location = new System.Drawing.Point(0, 334);
             this.sst_BottomBar.Name = "sst_BottomBar";
             this.sst_BottomBar.Size = new System.Drawing.Size(522, 22);
@@ -142,19 +154,61 @@
             this.btn_Save.UseVisualStyleBackColor = true;
             this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
-            // pgb_SaveProgress
+            // pgb_SaveFileProgress
             // 
-            this.pgb_SaveProgress.Location = new System.Drawing.Point(12, 271);
-            this.pgb_SaveProgress.Name = "pgb_SaveProgress";
-            this.pgb_SaveProgress.Size = new System.Drawing.Size(497, 33);
-            this.pgb_SaveProgress.TabIndex = 6;
+            this.pgb_SaveFileProgress.Location = new System.Drawing.Point(12, 271);
+            this.pgb_SaveFileProgress.Name = "pgb_SaveFileProgress";
+            this.pgb_SaveFileProgress.Size = new System.Drawing.Size(243, 33);
+            this.pgb_SaveFileProgress.TabIndex = 6;
+            // 
+            // bgWorker
+            // 
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            // 
+            // lbl_Between
+            // 
+            this.lbl_Between.Name = "lbl_Between";
+            this.lbl_Between.Size = new System.Drawing.Size(10, 17);
+            this.lbl_Between.Text = "|";
+            // 
+            // lbl_CurrentFile
+            // 
+            this.lbl_CurrentFile.Name = "lbl_CurrentFile";
+            this.lbl_CurrentFile.Size = new System.Drawing.Size(28, 17);
+            this.lbl_CurrentFile.Text = "File:";
+            // 
+            // ctx_CurrentFile
+            // 
+            this.ctx_CurrentFile.Name = "ctx_CurrentFile";
+            this.ctx_CurrentFile.Size = new System.Drawing.Size(36, 17);
+            this.ctx_CurrentFile.Text = "None";
+            // 
+            // lbl_CurrentFolder
+            // 
+            this.lbl_CurrentFolder.Name = "lbl_CurrentFolder";
+            this.lbl_CurrentFolder.Size = new System.Drawing.Size(43, 17);
+            this.lbl_CurrentFolder.Text = "Folder:";
+            // 
+            // ctx_CurrentFolder
+            // 
+            this.ctx_CurrentFolder.Name = "ctx_CurrentFolder";
+            this.ctx_CurrentFolder.Size = new System.Drawing.Size(36, 17);
+            this.ctx_CurrentFolder.Text = "None";
+            // 
+            // pgb_SaveFolderProgress
+            // 
+            this.pgb_SaveFolderProgress.Location = new System.Drawing.Point(261, 271);
+            this.pgb_SaveFolderProgress.Name = "pgb_SaveFolderProgress";
+            this.pgb_SaveFolderProgress.Size = new System.Drawing.Size(248, 33);
+            this.pgb_SaveFolderProgress.TabIndex = 6;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(522, 356);
-            this.Controls.Add(this.pgb_SaveProgress);
+            this.Controls.Add(this.pgb_SaveFolderProgress);
+            this.Controls.Add(this.pgb_SaveFileProgress);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.sst_BottomBar);
             this.Controls.Add(this.btn_Browse);
@@ -189,7 +243,14 @@
         private System.Windows.Forms.ToolStripStatusLabel lbl_WriterStatus;
         private System.Windows.Forms.ToolStripStatusLabel ctx_WriterStatus;
         private System.Windows.Forms.Button btn_Save;
-        private System.Windows.Forms.ProgressBar pgb_SaveProgress;
+        private System.Windows.Forms.ProgressBar pgb_SaveFileProgress;
+        private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.ToolStripStatusLabel lbl_Between;
+        private System.Windows.Forms.ToolStripStatusLabel lbl_CurrentFile;
+        private System.Windows.Forms.ToolStripStatusLabel ctx_CurrentFile;
+        private System.Windows.Forms.ToolStripStatusLabel lbl_CurrentFolder;
+        private System.Windows.Forms.ToolStripStatusLabel ctx_CurrentFolder;
+        private System.Windows.Forms.ProgressBar pgb_SaveFolderProgress;
     }
 }
 
