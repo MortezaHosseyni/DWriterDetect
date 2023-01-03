@@ -24,6 +24,10 @@ namespace DWriterDetect
             dgv_LogsTable.ScrollBars = ScrollBars.Both;
             showLogs("1 = 1");
         }
+        private void btn_Search_Click(object sender, EventArgs e)
+        {
+            showLogs($"LO_Name LIKE '%{txt_SearchByName.Text.Trim()}%' AND LO_Date LIKE '%{txt_SearchByDate.Text.Trim()}%'");
+        }
 
         public void showLogs(string search)
         {

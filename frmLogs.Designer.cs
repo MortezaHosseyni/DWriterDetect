@@ -99,13 +99,14 @@
             // 
             // btn_Search
             // 
-            this.btn_Search.Location = new System.Drawing.Point(686, 26);
+            this.btn_Search.Location = new System.Drawing.Point(686, 27);
             this.btn_Search.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Search.Name = "btn_Search";
             this.btn_Search.Size = new System.Drawing.Size(36, 24);
             this.btn_Search.TabIndex = 3;
             this.btn_Search.Text = "🔎";
             this.btn_Search.UseVisualStyleBackColor = true;
+            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
             // 
             // LO_ID
             // 
@@ -156,6 +157,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.MaximumSize = new System.Drawing.Size(937, 488);
+            this.MinimumSize = new System.Drawing.Size(937, 488);
             this.Name = "frmLogs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Log";
