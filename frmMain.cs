@@ -8,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,17 +31,8 @@ namespace DWriterDetect
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-
-            if (File.Exists("paths.txt"))
-            {
-                foreach (var line in File.ReadLines("paths.txt"))
-                {
-                    txt_SavePath.Items.Add(line);
-                }
-            }
-
             checkTimer.Tick += new EventHandler(checkTimer_Tick);
-            checkTimer.Interval = 1000; // in miliseconds
+            checkTimer.Interval = 1000;
             checkTimer.Start();
 
             var drive = DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.CDRom).SingleOrDefault();
@@ -81,20 +73,6 @@ namespace DWriterDetect
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            if (File.Exists("paths.txt"))
-            {
-                foreach (var line in File.ReadLines("paths.txt"))
-                {
-                    if (line != txt_SavePath.Text.Trim())
-                    {
-                        File.AppendAllText("paths.txt", txt_SavePath.Text.Trim() + "\n");
-                    }
-                }
-            }
-            else
-            {
-                File.Create("paths.txt");
-            }
 
             if (ctx_WriterStatus.Text != "Detected")
             {
@@ -215,22 +193,6 @@ namespace DWriterDetect
             }
         }
 
-        static void RestartApp(int pid, string applicationName)
-        {
-            // Wait for the process to terminate
-            Process process = null;
-            try
-            {
-                process = Process.GetProcessById(pid);
-                process.WaitForExit(1000);
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show("Cannot restart app.", "Restart Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            Process.Start(applicationName, "");
-        }
-
         private static void closeDvd()
         {
             int ret = mciSendString("set cdaudio door open", null, 0, IntPtr.Zero);
@@ -242,6 +204,4 @@ namespace DWriterDetect
                                                    int uReturnLength,
                                                    IntPtr hwndCallback);
     }
-
-    
 }

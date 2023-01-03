@@ -39,14 +39,14 @@
             this.sst_BottomBar = new System.Windows.Forms.StatusStrip();
             this.lbl_WriterStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.ctx_WriterStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btn_Save = new System.Windows.Forms.Button();
-            this.pgb_SaveFileProgress = new System.Windows.Forms.ProgressBar();
-            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.lbl_Between = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbl_CurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
             this.ctx_CurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbl_CurrentFolder = new System.Windows.Forms.ToolStripStatusLabel();
             this.ctx_CurrentFolder = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btn_Save = new System.Windows.Forms.Button();
+            this.pgb_SaveFileProgress = new System.Windows.Forms.ProgressBar();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.pgb_SaveFolderProgress = new System.Windows.Forms.ProgressBar();
             this.checkTimer = new System.Windows.Forms.Timer(this.components);
             this.txt_SavePath = new System.Windows.Forms.ComboBox();
@@ -140,27 +140,6 @@
             this.ctx_WriterStatus.Size = new System.Drawing.Size(77, 17);
             this.ctx_WriterStatus.Text = "Not Detected";
             // 
-            // btn_Save
-            // 
-            this.btn_Save.Location = new System.Drawing.Point(12, 233);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(719, 33);
-            this.btn_Save.TabIndex = 4;
-            this.btn_Save.Text = "Save";
-            this.btn_Save.UseVisualStyleBackColor = true;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
-            // 
-            // pgb_SaveFileProgress
-            // 
-            this.pgb_SaveFileProgress.Location = new System.Drawing.Point(12, 272);
-            this.pgb_SaveFileProgress.Name = "pgb_SaveFileProgress";
-            this.pgb_SaveFileProgress.Size = new System.Drawing.Size(369, 33);
-            this.pgb_SaveFileProgress.TabIndex = 6;
-            // 
-            // bgWorker
-            // 
-            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
-            // 
             // lbl_Between
             // 
             this.lbl_Between.Name = "lbl_Between";
@@ -191,11 +170,32 @@
             this.ctx_CurrentFolder.Size = new System.Drawing.Size(36, 17);
             this.ctx_CurrentFolder.Text = "None";
             // 
+            // btn_Save
+            // 
+            this.btn_Save.Location = new System.Drawing.Point(12, 233);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(719, 33);
+            this.btn_Save.TabIndex = 4;
+            this.btn_Save.Text = "Save";
+            this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            // 
+            // pgb_SaveFileProgress
+            // 
+            this.pgb_SaveFileProgress.Location = new System.Drawing.Point(12, 272);
+            this.pgb_SaveFileProgress.Name = "pgb_SaveFileProgress";
+            this.pgb_SaveFileProgress.Size = new System.Drawing.Size(359, 33);
+            this.pgb_SaveFileProgress.TabIndex = 6;
+            // 
+            // bgWorker
+            // 
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            // 
             // pgb_SaveFolderProgress
             // 
-            this.pgb_SaveFolderProgress.Location = new System.Drawing.Point(387, 272);
+            this.pgb_SaveFolderProgress.Location = new System.Drawing.Point(377, 272);
             this.pgb_SaveFolderProgress.Name = "pgb_SaveFolderProgress";
-            this.pgb_SaveFolderProgress.Size = new System.Drawing.Size(344, 33);
+            this.pgb_SaveFolderProgress.Size = new System.Drawing.Size(354, 33);
             this.pgb_SaveFolderProgress.TabIndex = 6;
             // 
             // checkTimer
@@ -228,7 +228,7 @@
             this.Controls.Add(this.lbl_AppTitle);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(759, 395);
             this.MinimumSize = new System.Drawing.Size(759, 395);
