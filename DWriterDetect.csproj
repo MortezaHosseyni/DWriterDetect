@@ -105,6 +105,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database.cs" />
     <Compile Include="DriveWatcher.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>

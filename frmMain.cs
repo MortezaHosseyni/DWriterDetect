@@ -35,11 +35,18 @@ namespace DWriterDetect
         private void frmMain_Load(object sender, EventArgs e)
         {
             SQLiteDataReader paths = db.readData("TB_Paths");
+            if (paths.StepCount > 0)
+            {
+                while (paths.Read())
+                {
+                    txt_SavePath.Items.Add(paths.GetString(1));
+                }
+            }
 
             checkTimer.Tick += new EventHandler(checkTimer_Tick);
             checkTimer.Interval = 1000;
             checkTimer.Start();
-            
+
             var drive = DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.CDRom).SingleOrDefault();
             if (Directory.Exists(drive.RootDirectory.FullName))
             {
@@ -78,7 +85,6 @@ namespace DWriterDetect
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-
             if (ctx_WriterStatus.Text != "Detected")
             {
                 MessageBox.Show("Enter your dvd in dvd writer", "DVD Not Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -89,6 +95,32 @@ namespace DWriterDetect
             {
                 if (btn_Save.Text == "Save")
                 {
+                    if (txt_SavePath.Items.Count > 0)
+                    {
+                        sbyte exist = 0;
+                        foreach (string item in txt_SavePath.Items)
+                        {
+                            if (item == txt_SavePath.Text.Trim())
+                            {
+                                exist = 1;
+                            }
+                        }
+                        if (exist == 0)
+                        {
+                            if (!db.addData("TB_Paths", "PT_Path", $"'{txt_SavePath.Text.Trim()}'"))
+                            {
+                                MessageBox.Show("Unexapted error", "Save Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!db.addData("TB_Paths", "PT_Path", $"'{txt_SavePath.Text.Trim()}'"))
+                        {
+                            MessageBox.Show("Unexapted error", "Save Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+
                     string name = txt_SaveName.Text.Replace(" ", "_");
                     string target = $"{txt_SavePath.Text.Trim()}\\{toDay}\\{pc.GetHour(DateTime.Now)}_{pc.GetMinute(DateTime.Now)}_{pc.GetSecond(DateTime.Now)}__{name}\\";
                     sourcePath = dvdRoot;
