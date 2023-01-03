@@ -18,11 +18,25 @@ namespace DWriterDetect
 
 				return reader;
 			}
-			catch (Exception err)
+			catch (Exception)
 			{
 				return null;
-				throw;
 			}
+        }
+
+		public bool addData(string tbName, string fields, string values)
+		{
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand($"INSERT INTO {tbName} ({fields}) VALUES ({values})");
+                cmd.ExecuteReader();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
