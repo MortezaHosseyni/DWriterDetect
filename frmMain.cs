@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -23,6 +24,8 @@ namespace DWriterDetect
 
         public string sourcePath, targetPath;
 
+        Database db = new Database();
+
         PersianCalendar pc = new PersianCalendar();
         public frmMain()
         {
@@ -31,10 +34,12 @@ namespace DWriterDetect
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            SQLiteDataReader paths = db.readData("TB_Paths");
+
             checkTimer.Tick += new EventHandler(checkTimer_Tick);
             checkTimer.Interval = 1000;
             checkTimer.Start();
-
+            
             var drive = DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.CDRom).SingleOrDefault();
             if (Directory.Exists(drive.RootDirectory.FullName))
             {
