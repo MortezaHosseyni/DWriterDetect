@@ -249,6 +249,7 @@
             this.btn_Logs.Name = "btn_Logs";
             this.btn_Logs.Size = new System.Drawing.Size(180, 22);
             this.btn_Logs.Text = "Logs";
+            this.btn_Logs.Click += new System.EventHandler(this.btn_Logs_Click);
             // 
             // lbl_Break
             // 

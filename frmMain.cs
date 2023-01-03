@@ -137,15 +137,16 @@ namespace DWriterDetect
                 {
                     if (MessageBox.Show("Are you sure?", "Cancel Progress", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        bgWorker.CancelAsync();
                         string saveDate = $"{pc.GetYear(DateTime.Now)}/{pc.GetMonth(DateTime.Now)}/{pc.GetDayOfMonth(DateTime.Now)} | {pc.GetHour(DateTime.Now)}:{pc.GetMinute(DateTime.Now)}:{pc.GetSecond(DateTime.Now)}";
-                        if (!db.addData("TB_Logs",
+                        if (!db.addData("TB_Log",
                             "LO_Name, LO_Date, LO_Type, LO_Path",
                             $"'{txt_SaveName.Text.Trim()}', '{saveDate}', {0}, '{txt_SavePath.Text.Trim()}'"))
                         {
                             MessageBox.Show("Unexpected error while save log!", "Save Log", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         btn_Save.Text = "Save";
+
+                        bgWorker.CancelAsync();
                         return;
                     }
                 }
@@ -222,7 +223,7 @@ namespace DWriterDetect
                 }
 
                 string saveDate = $"{pc.GetYear(DateTime.Now)}/{pc.GetMonth(DateTime.Now)}/{pc.GetDayOfMonth(DateTime.Now)} | {pc.GetHour(DateTime.Now)}:{pc.GetMinute(DateTime.Now)}:{pc.GetSecond(DateTime.Now)}";
-                if (!db.addData("TB_Logs",
+                if (!db.addData("TB_Log",
                     "LO_Name, LO_Date, LO_Type, LO_Path",
                     $"'{txt_SaveName.Text.Trim()}', '{saveDate}', {1}, '{txt_SavePath.Text.Trim()}'"))
                 {
@@ -253,6 +254,12 @@ namespace DWriterDetect
         private void btn_About_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Developer: Morteza Hosseini\nGithub: @MrMeeann", "About", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void btn_Logs_Click(object sender, EventArgs e)
+        {
+            frmLogs fLog = new frmLogs();
+            fLog.ShowDialog();
         }
 
         [DllImport("winmm.dll", EntryPoint = "mciSendStringA", CharSet = CharSet.Ansi)]

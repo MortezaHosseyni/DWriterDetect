@@ -107,6 +107,12 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="DriveWatcher.cs" />
+    <Compile Include="frmLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogs.Designer.cs">
+      <DependentUpon>frmLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmLogs.resx">
+      <DependentUpon>frmLogs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
