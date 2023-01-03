@@ -241,26 +241,26 @@
             // btn_Paths
             // 
             this.btn_Paths.Name = "btn_Paths";
-            this.btn_Paths.Size = new System.Drawing.Size(180, 22);
+            this.btn_Paths.Size = new System.Drawing.Size(107, 22);
             this.btn_Paths.Text = "Paths";
             this.btn_Paths.Click += new System.EventHandler(this.btn_Paths_Click);
             // 
             // btn_Logs
             // 
             this.btn_Logs.Name = "btn_Logs";
-            this.btn_Logs.Size = new System.Drawing.Size(180, 22);
+            this.btn_Logs.Size = new System.Drawing.Size(107, 22);
             this.btn_Logs.Text = "Logs";
             this.btn_Logs.Click += new System.EventHandler(this.btn_Logs_Click);
             // 
             // lbl_Break
             // 
             this.lbl_Break.Name = "lbl_Break";
-            this.lbl_Break.Size = new System.Drawing.Size(177, 6);
+            this.lbl_Break.Size = new System.Drawing.Size(104, 6);
             // 
             // btn_About
             // 
             this.btn_About.Name = "btn_About";
-            this.btn_About.Size = new System.Drawing.Size(180, 22);
+            this.btn_About.Size = new System.Drawing.Size(107, 22);
             this.btn_About.Text = "About";
             this.btn_About.Click += new System.EventHandler(this.btn_About_Click);
             // 
@@ -291,6 +291,7 @@
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dwriter Detect";
+            this.Activated += new System.EventHandler(this.frmMain_Activated);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.sst_BottomBar.ResumeLayout(false);
             this.sst_BottomBar.PerformLayout();

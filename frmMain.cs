@@ -34,14 +34,7 @@ namespace DWriterDetect
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            SQLiteDataReader paths = db.readData("TB_Paths");
-            if (paths.StepCount > 0)
-            {
-                while (paths.Read())
-                {
-                    txt_SavePath.Items.Add(paths.GetString(1));
-                }
-            }
+            
 
             checkTimer.Tick += new EventHandler(checkTimer_Tick);
             checkTimer.Interval = 1000;
@@ -266,6 +259,19 @@ namespace DWriterDetect
         {
             frmPaths fPath = new frmPaths();
             fPath.ShowDialog();
+        }
+
+        private void frmMain_Activated(object sender, EventArgs e)
+        {
+            txt_SavePath.Items.Clear();
+            SQLiteDataReader paths = db.readData("TB_Paths");
+            if (paths.StepCount > 0)
+            {
+                while (paths.Read())
+                {
+                    txt_SavePath.Items.Add(paths.GetString(1));
+                }
+            }
         }
 
         [DllImport("winmm.dll", EntryPoint = "mciSendStringA", CharSet = CharSet.Ansi)]

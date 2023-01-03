@@ -47,6 +47,7 @@
             this.btn_AddPath.TabIndex = 0;
             this.btn_AddPath.Text = "Add Path";
             this.btn_AddPath.UseVisualStyleBackColor = true;
+            this.btn_AddPath.Click += new System.EventHandler(this.btn_AddPath_Click);
             // 
             // lsv_PathList
             // 
@@ -74,19 +75,20 @@
             this.btn_BrowsePath.TabIndex = 3;
             this.btn_BrowsePath.Text = "...";
             this.btn_BrowsePath.UseVisualStyleBackColor = true;
+            this.btn_BrowsePath.Click += new System.EventHandler(this.btn_BrowsePath_Click);
             // 
             // cms_PathRightMenu
             // 
             this.cms_PathRightMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_DeletePath});
             this.cms_PathRightMenu.Name = "cms_PathRightMenu";
-            this.cms_PathRightMenu.Size = new System.Drawing.Size(181, 48);
+            this.cms_PathRightMenu.Size = new System.Drawing.Size(108, 26);
             // 
             // btn_DeletePath
             // 
             this.btn_DeletePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btn_DeletePath.Name = "btn_DeletePath";
-            this.btn_DeletePath.Size = new System.Drawing.Size(180, 22);
+            this.btn_DeletePath.Size = new System.Drawing.Size(107, 22);
             this.btn_DeletePath.Text = "Delete";
             this.btn_DeletePath.Click += new System.EventHandler(this.btn_DeletePath_Click);
             // 
