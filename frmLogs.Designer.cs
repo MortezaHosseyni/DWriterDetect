@@ -40,6 +40,7 @@
             this.LO_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LO_Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LO_Path = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_ExportExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LogsTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             // 
             // txt_SearchByName
             // 
-            this.txt_SearchByName.Location = new System.Drawing.Point(228, 26);
+            this.txt_SearchByName.Location = new System.Drawing.Point(385, 25);
             this.txt_SearchByName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_SearchByName.Name = "txt_SearchByName";
             this.txt_SearchByName.Size = new System.Drawing.Size(200, 26);
@@ -72,7 +73,7 @@
             // lbl_SearchByName
             // 
             this.lbl_SearchByName.AutoSize = true;
-            this.lbl_SearchByName.Location = new System.Drawing.Point(174, 28);
+            this.lbl_SearchByName.Location = new System.Drawing.Point(331, 27);
             this.lbl_SearchByName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_SearchByName.Name = "lbl_SearchByName";
             this.lbl_SearchByName.Size = new System.Drawing.Size(51, 20);
@@ -81,7 +82,7 @@
             // 
             // txt_SearchByDate
             // 
-            this.txt_SearchByDate.Location = new System.Drawing.Point(482, 26);
+            this.txt_SearchByDate.Location = new System.Drawing.Point(639, 25);
             this.txt_SearchByDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_SearchByDate.Name = "txt_SearchByDate";
             this.txt_SearchByDate.Size = new System.Drawing.Size(200, 26);
@@ -90,7 +91,7 @@
             // lbl_SearchByDate
             // 
             this.lbl_SearchByDate.AutoSize = true;
-            this.lbl_SearchByDate.Location = new System.Drawing.Point(438, 28);
+            this.lbl_SearchByDate.Location = new System.Drawing.Point(595, 27);
             this.lbl_SearchByDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_SearchByDate.Name = "lbl_SearchByDate";
             this.lbl_SearchByDate.Size = new System.Drawing.Size(44, 20);
@@ -99,7 +100,7 @@
             // 
             // btn_Search
             // 
-            this.btn_Search.Location = new System.Drawing.Point(686, 27);
+            this.btn_Search.Location = new System.Drawing.Point(843, 26);
             this.btn_Search.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Search.Name = "btn_Search";
             this.btn_Search.Size = new System.Drawing.Size(36, 24);
@@ -142,11 +143,22 @@
             this.LO_Path.ReadOnly = true;
             this.LO_Path.Width = 400;
             // 
+            // btn_ExportExcel
+            // 
+            this.btn_ExportExcel.Location = new System.Drawing.Point(12, 24);
+            this.btn_ExportExcel.Name = "btn_ExportExcel";
+            this.btn_ExportExcel.Size = new System.Drawing.Size(196, 27);
+            this.btn_ExportExcel.TabIndex = 4;
+            this.btn_ExportExcel.Text = "Export To Excel";
+            this.btn_ExportExcel.UseVisualStyleBackColor = true;
+            this.btn_ExportExcel.Click += new System.EventHandler(this.btn_ExportExcel_Click);
+            // 
             // frmLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 449);
+            this.Controls.Add(this.btn_ExportExcel);
             this.Controls.Add(this.btn_Search);
             this.Controls.Add(this.lbl_SearchByDate);
             this.Controls.Add(this.lbl_SearchByName);
@@ -182,5 +194,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LO_Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn LO_Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn LO_Path;
+        private System.Windows.Forms.Button btn_ExportExcel;
     }
 }
