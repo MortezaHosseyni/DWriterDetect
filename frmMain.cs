@@ -262,6 +262,12 @@ namespace DWriterDetect
             fLog.ShowDialog();
         }
 
+        private void btn_Paths_Click(object sender, EventArgs e)
+        {
+            frmPaths fPath = new frmPaths();
+            fPath.ShowDialog();
+        }
+
         [DllImport("winmm.dll", EntryPoint = "mciSendStringA", CharSet = CharSet.Ansi)]
         protected static extern int mciSendString(string lpstrCommand,
                                                    StringBuilder lpstrReturnString,
