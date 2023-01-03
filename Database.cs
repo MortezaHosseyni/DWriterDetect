@@ -53,5 +53,20 @@ namespace DWriterDetect
                 return false;
             }
         }
+
+        public bool deleteData(string tbName, string condition)
+        {
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand($"DELETE FROM {tbName} WHERE {condition}", conn());
+                cmd.ExecuteReader();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

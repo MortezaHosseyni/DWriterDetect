@@ -88,6 +88,7 @@
             this.btn_DeletePath.Name = "btn_DeletePath";
             this.btn_DeletePath.Size = new System.Drawing.Size(180, 22);
             this.btn_DeletePath.Text = "Delete";
+            this.btn_DeletePath.Click += new System.EventHandler(this.btn_DeletePath_Click);
             // 
             // frmPaths
             // 

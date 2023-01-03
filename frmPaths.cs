@@ -30,5 +30,10 @@ namespace DWriterDetect
                 lsv_PathList.Items.Add(paths.GetString(1));
             }
         }
+
+        private void btn_DeletePath_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
