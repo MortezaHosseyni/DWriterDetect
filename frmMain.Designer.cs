@@ -50,7 +50,14 @@
             this.pgb_SaveFolderProgress = new System.Windows.Forms.ProgressBar();
             this.checkTimer = new System.Windows.Forms.Timer(this.components);
             this.txt_SavePath = new System.Windows.Forms.ComboBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.archiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_Paths = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_Logs = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbl_Break = new System.Windows.Forms.ToolStripSeparator();
+            this.btn_About = new System.Windows.Forms.ToolStripMenuItem();
             this.sst_BottomBar.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_AppTitle
@@ -210,6 +217,51 @@
             this.txt_SavePath.Size = new System.Drawing.Size(497, 32);
             this.txt_SavePath.TabIndex = 1;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archiveToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(743, 24);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // archiveToolStripMenuItem
+            // 
+            this.archiveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_Paths,
+            this.btn_Logs,
+            this.lbl_Break,
+            this.btn_About});
+            this.archiveToolStripMenuItem.Name = "archiveToolStripMenuItem";
+            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.archiveToolStripMenuItem.Text = "Archive";
+            // 
+            // btn_Paths
+            // 
+            this.btn_Paths.Name = "btn_Paths";
+            this.btn_Paths.Size = new System.Drawing.Size(180, 22);
+            this.btn_Paths.Text = "Paths";
+            // 
+            // btn_Logs
+            // 
+            this.btn_Logs.Name = "btn_Logs";
+            this.btn_Logs.Size = new System.Drawing.Size(180, 22);
+            this.btn_Logs.Text = "Logs";
+            // 
+            // lbl_Break
+            // 
+            this.lbl_Break.Name = "lbl_Break";
+            this.lbl_Break.Size = new System.Drawing.Size(177, 6);
+            // 
+            // btn_About
+            // 
+            this.btn_About.Name = "btn_About";
+            this.btn_About.Size = new System.Drawing.Size(180, 22);
+            this.btn_About.Text = "About";
+            this.btn_About.Click += new System.EventHandler(this.btn_About_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -220,6 +272,7 @@
             this.Controls.Add(this.pgb_SaveFileProgress);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.sst_BottomBar);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btn_Browse);
             this.Controls.Add(this.lbl_SaveName);
             this.Controls.Add(this.lbl_SavePath);
@@ -228,6 +281,7 @@
             this.Controls.Add(this.lbl_AppTitle);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(759, 395);
@@ -238,6 +292,8 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.sst_BottomBar.ResumeLayout(false);
             this.sst_BottomBar.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,6 +321,12 @@
         private System.Windows.Forms.ProgressBar pgb_SaveFolderProgress;
         private System.Windows.Forms.Timer checkTimer;
         private System.Windows.Forms.ComboBox txt_SavePath;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem archiveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btn_Paths;
+        private System.Windows.Forms.ToolStripMenuItem btn_Logs;
+        private System.Windows.Forms.ToolStripSeparator lbl_Break;
+        private System.Windows.Forms.ToolStripMenuItem btn_About;
     }
 }
 

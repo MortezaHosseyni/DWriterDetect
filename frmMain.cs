@@ -235,6 +235,11 @@ namespace DWriterDetect
             int ret = mciSendString("set cdaudio door open", null, 0, IntPtr.Zero);
         }
 
+        private void btn_About_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Developer: Morteza Hosseini\nGithub: @MrMeeann", "About", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         [DllImport("winmm.dll", EntryPoint = "mciSendStringA", CharSet = CharSet.Ansi)]
         protected static extern int mciSendString(string lpstrCommand,
                                                    StringBuilder lpstrReturnString,
