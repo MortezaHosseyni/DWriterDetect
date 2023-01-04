@@ -125,6 +125,7 @@
     <Compile Include="frmPaths.Designer.cs">
       <DependentUpon>frmPaths.cs</DependentUpon>
     </Compile>
+    <Compile Include="PassHash.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmLogs.resx">

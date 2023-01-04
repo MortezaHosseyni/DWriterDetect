@@ -56,6 +56,7 @@
             this.btn_Logs = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_Break = new System.Windows.Forms.ToolStripSeparator();
             this.btn_About = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_ChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.sst_BottomBar.SuspendLayout();
             this.msp_TopMenu.SuspendLayout();
             this.SuspendLayout();
@@ -232,6 +233,7 @@
             this.archiveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_Paths,
             this.btn_Logs,
+            this.btn_ChangePassword,
             this.lbl_Break,
             this.btn_About});
             this.archiveToolStripMenuItem.Name = "archiveToolStripMenuItem";
@@ -241,28 +243,34 @@
             // btn_Paths
             // 
             this.btn_Paths.Name = "btn_Paths";
-            this.btn_Paths.Size = new System.Drawing.Size(107, 22);
+            this.btn_Paths.Size = new System.Drawing.Size(180, 22);
             this.btn_Paths.Text = "Paths";
             this.btn_Paths.Click += new System.EventHandler(this.btn_Paths_Click);
             // 
             // btn_Logs
             // 
             this.btn_Logs.Name = "btn_Logs";
-            this.btn_Logs.Size = new System.Drawing.Size(107, 22);
+            this.btn_Logs.Size = new System.Drawing.Size(180, 22);
             this.btn_Logs.Text = "Logs";
             this.btn_Logs.Click += new System.EventHandler(this.btn_Logs_Click);
             // 
             // lbl_Break
             // 
             this.lbl_Break.Name = "lbl_Break";
-            this.lbl_Break.Size = new System.Drawing.Size(104, 6);
+            this.lbl_Break.Size = new System.Drawing.Size(177, 6);
             // 
             // btn_About
             // 
             this.btn_About.Name = "btn_About";
-            this.btn_About.Size = new System.Drawing.Size(107, 22);
+            this.btn_About.Size = new System.Drawing.Size(180, 22);
             this.btn_About.Text = "About";
             this.btn_About.Click += new System.EventHandler(this.btn_About_Click);
+            // 
+            // btn_ChangePassword
+            // 
+            this.btn_ChangePassword.Name = "btn_ChangePassword";
+            this.btn_ChangePassword.Size = new System.Drawing.Size(180, 22);
+            this.btn_ChangePassword.Text = "Change Password";
             // 
             // frmMain
             // 
@@ -331,6 +339,7 @@
         private System.Windows.Forms.ToolStripMenuItem btn_Logs;
         private System.Windows.Forms.ToolStripSeparator lbl_Break;
         private System.Windows.Forms.ToolStripMenuItem btn_About;
+        private System.Windows.Forms.ToolStripMenuItem btn_ChangePassword;
     }
 }
 
