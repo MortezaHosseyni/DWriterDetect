@@ -292,6 +292,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dwriter Detect";
             this.Activated += new System.EventHandler(this.frmMain_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.sst_BottomBar.ResumeLayout(false);
             this.sst_BottomBar.PerformLayout();

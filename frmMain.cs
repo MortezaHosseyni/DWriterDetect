@@ -34,7 +34,10 @@ namespace DWriterDetect
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            
+            if (Properties.Settings.Default.LastPath != "")
+            {
+                txt_SavePath.Text = Properties.Settings.Default.LastPath;
+            }
 
             checkTimer.Tick += new EventHandler(checkTimer_Tick);
             checkTimer.Interval = 1000;
@@ -270,6 +273,12 @@ namespace DWriterDetect
                     txt_SavePath.Items.Add(paths.GetString(1));
                 }
             }
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.LastPath = txt_SavePath.Text.Trim();
+            Properties.Settings.Default.Save();
         }
 
         [DllImport("winmm.dll", EntryPoint = "mciSendStringA", CharSet = CharSet.Ansi)]
