@@ -50,13 +50,19 @@ namespace DWriterDetect
         }
         private void btn_ExportExcel_Click(object sender, EventArgs e)
         {
+            if (dgv_LogsTable.Rows.Count <= 0)
+            {
+                MessageBox.Show("Logs table is empty!", "Export Log Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             saveExcel.Title = "Save DWriter Logs";
             saveExcel.Filter = "Excel File | *.xls; *.xlsx";
             saveExcel.FileName = "Dwriter_Logs";
-            saveExcel.ShowDialog();
 
-
-            saveToExcel();
+            if (saveExcel.ShowDialog() == DialogResult.OK)
+            {
+                saveToExcel();
+            }
         }
 
         public void saveToExcel()
