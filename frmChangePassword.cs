@@ -27,7 +27,10 @@ namespace DWriterDetect
                 if (checkNewPass())
                 {
                     SQLiteDataReader user = db.readData("TB_User", "US_ID = 1");
-                    if (user.Read() && user.GetString(1) == PassHash.passHasher(txt_OldPassword.Text.Trim()))
+                    if (!user.Read()) { MessageBox.Show("We have a Unexpected error!", "Unexpected error"); return; }
+                    string pass = user.GetString(1);
+                    user.Close();
+                    if (pass == PassHash.passHasher(txt_OldPassword.Text.Trim()))
                     {
                         if (db.updateData("TB_User", $"US_Password = '{PassHash.passHasher(txt_NewPassword.Text.Trim())}'", "US_ID = 1"))
                         {

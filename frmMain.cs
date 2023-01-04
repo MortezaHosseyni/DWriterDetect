@@ -281,6 +281,12 @@ namespace DWriterDetect
             Properties.Settings.Default.Save();
         }
 
+        private void btn_ChangePassword_Click(object sender, EventArgs e)
+        {
+            frmChangePassword fCP = new frmChangePassword();
+            fCP.ShowDialog();
+        }
+
         [DllImport("winmm.dll", EntryPoint = "mciSendStringA", CharSet = CharSet.Ansi)]
         protected static extern int mciSendString(string lpstrCommand,
                                                    StringBuilder lpstrReturnString,

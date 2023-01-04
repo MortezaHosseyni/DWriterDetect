@@ -54,9 +54,9 @@
             this.archiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_Paths = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_Logs = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_ChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_Break = new System.Windows.Forms.ToolStripSeparator();
             this.btn_About = new System.Windows.Forms.ToolStripMenuItem();
-            this.btn_ChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.sst_BottomBar.SuspendLayout();
             this.msp_TopMenu.SuspendLayout();
             this.SuspendLayout();
@@ -254,6 +254,13 @@
             this.btn_Logs.Text = "Logs";
             this.btn_Logs.Click += new System.EventHandler(this.btn_Logs_Click);
             // 
+            // btn_ChangePassword
+            // 
+            this.btn_ChangePassword.Name = "btn_ChangePassword";
+            this.btn_ChangePassword.Size = new System.Drawing.Size(180, 22);
+            this.btn_ChangePassword.Text = "Change Password";
+            this.btn_ChangePassword.Click += new System.EventHandler(this.btn_ChangePassword_Click);
+            // 
             // lbl_Break
             // 
             this.lbl_Break.Name = "lbl_Break";
@@ -265,12 +272,6 @@
             this.btn_About.Size = new System.Drawing.Size(180, 22);
             this.btn_About.Text = "About";
             this.btn_About.Click += new System.EventHandler(this.btn_About_Click);
-            // 
-            // btn_ChangePassword
-            // 
-            this.btn_ChangePassword.Name = "btn_ChangePassword";
-            this.btn_ChangePassword.Size = new System.Drawing.Size(180, 22);
-            this.btn_ChangePassword.Text = "Change Password";
             // 
             // frmMain
             // 

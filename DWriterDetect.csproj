@@ -107,6 +107,12 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="DriveWatcher.cs" />
+    <Compile Include="frmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChangePassword.Designer.cs">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     <Compile Include="PassHash.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogs.resx">
       <DependentUpon>frmLogs.cs</DependentUpon>
     </EmbeddedResource>
