@@ -68,5 +68,20 @@ namespace DWriterDetect
                 return false;
             }
         }
+
+        public bool updateData(string tbName, string values, string condition)
+        {
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand($"UPDATE {tbName} SET {values} WHERE {condition}", conn());
+                cmd.ExecuteReader();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
