@@ -125,6 +125,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmOpenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpenForm.Designer.cs">
+      <DependentUpon>frmOpenForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPaths.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpenForm.resx">
+      <DependentUpon>frmOpenForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPaths.resx">
       <DependentUpon>frmPaths.cs</DependentUpon>

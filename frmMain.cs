@@ -252,13 +252,15 @@ namespace DWriterDetect
 
         private void btn_Logs_Click(object sender, EventArgs e)
         {
-            frmLogs fLog = new frmLogs();
+            frmOpenForm fLog = new frmOpenForm();
+            fLog.formID = 1;
             fLog.ShowDialog();
         }
 
         private void btn_Paths_Click(object sender, EventArgs e)
         {
-            frmPaths fPath = new frmPaths();
+            frmOpenForm fPath = new frmOpenForm();
+            fPath.formID = 0;
             fPath.ShowDialog();
         }
 
