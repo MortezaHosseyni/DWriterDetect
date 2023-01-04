@@ -24,15 +24,21 @@ namespace DWriterDetect
         {
             if (checkEmptyField())
             {
-                SQLiteDataReader user = db.readData("TB_User", "US_ID = 1");
-                if (user.Read() && user.GetString(1) == PassHash.passHasher(txt_OldPassword.Text.Trim()))
+                if (checkNewPass())
                 {
-
-                }
-                else
-                {
-                    MessageBox.Show("Old password is incorrect!", "Old Password Incorrect");
-                    return;
+                    SQLiteDataReader user = db.readData("TB_User", "US_ID = 1");
+                    if (user.Read() && user.GetString(1) == PassHash.passHasher(txt_OldPassword.Text.Trim()))
+                    {
+                        if (db.updateData("TB_User", $"US_Password = '{PassHash.passHasher(txt_NewPassword.Text.Trim())}'", "US_ID = 1"))
+                        {
+                            MessageBox.Show("Password saved successfuly!", "New Password Saved");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Old password is incorrect!", "Old Password Incorrect");
+                        return;
+                    }
                 }
             }
         }
@@ -42,6 +48,16 @@ namespace DWriterDetect
             if (txt_OldPassword.Text.Trim() == "" || txt_NewPassword.Text.Trim() == "" || txt_RePassword.Text.Trim() == "")
             {
                 MessageBox.Show("Please fill empty fields", "Empty Fields");
+                return false;
+            }
+            return true;
+        }
+
+        private bool checkNewPass()
+        {
+            if (txt_NewPassword.Text.Trim() != txt_RePassword.Text.Trim())
+            {
+                MessageBox.Show("New password and re-password are not the same", "New Password Error");
                 return false;
             }
             return true;
