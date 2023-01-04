@@ -50,14 +50,14 @@
             this.pgb_SaveFolderProgress = new System.Windows.Forms.ProgressBar();
             this.checkTimer = new System.Windows.Forms.Timer(this.components);
             this.txt_SavePath = new System.Windows.Forms.ComboBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.msp_TopMenu = new System.Windows.Forms.MenuStrip();
             this.archiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_Paths = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_Logs = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_Break = new System.Windows.Forms.ToolStripSeparator();
             this.btn_About = new System.Windows.Forms.ToolStripMenuItem();
             this.sst_BottomBar.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.msp_TopMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_AppTitle
@@ -217,15 +217,15 @@
             this.txt_SavePath.Size = new System.Drawing.Size(497, 32);
             this.txt_SavePath.TabIndex = 1;
             // 
-            // menuStrip1
+            // msp_TopMenu
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msp_TopMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archiveToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(743, 24);
-            this.menuStrip1.TabIndex = 7;
-            this.menuStrip1.Text = "menuStrip1";
+            this.msp_TopMenu.Location = new System.Drawing.Point(0, 0);
+            this.msp_TopMenu.Name = "msp_TopMenu";
+            this.msp_TopMenu.Size = new System.Drawing.Size(743, 24);
+            this.msp_TopMenu.TabIndex = 7;
+            this.msp_TopMenu.Text = "menuStrip1";
             // 
             // archiveToolStripMenuItem
             // 
@@ -274,7 +274,7 @@
             this.Controls.Add(this.pgb_SaveFileProgress);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.sst_BottomBar);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.msp_TopMenu);
             this.Controls.Add(this.btn_Browse);
             this.Controls.Add(this.lbl_SaveName);
             this.Controls.Add(this.lbl_SavePath);
@@ -283,7 +283,7 @@
             this.Controls.Add(this.lbl_AppTitle);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.msp_TopMenu;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(759, 395);
@@ -295,8 +295,8 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.sst_BottomBar.ResumeLayout(false);
             this.sst_BottomBar.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.msp_TopMenu.ResumeLayout(false);
+            this.msp_TopMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,7 +324,7 @@
         private System.Windows.Forms.ProgressBar pgb_SaveFolderProgress;
         private System.Windows.Forms.Timer checkTimer;
         private System.Windows.Forms.ComboBox txt_SavePath;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip msp_TopMenu;
         private System.Windows.Forms.ToolStripMenuItem archiveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btn_Paths;
         private System.Windows.Forms.ToolStripMenuItem btn_Logs;

@@ -32,10 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPaths));
             this.btn_AddPath = new System.Windows.Forms.Button();
             this.lsv_PathList = new System.Windows.Forms.ListView();
-            this.txt_NewPath = new System.Windows.Forms.TextBox();
-            this.btn_BrowsePath = new System.Windows.Forms.Button();
             this.cms_PathRightMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btn_DeletePath = new System.Windows.Forms.ToolStripMenuItem();
+            this.txt_NewPath = new System.Windows.Forms.TextBox();
+            this.btn_BrowsePath = new System.Windows.Forms.Button();
             this.cms_PathRightMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +60,21 @@
             this.lsv_PathList.UseCompatibleStateImageBehavior = false;
             this.lsv_PathList.View = System.Windows.Forms.View.List;
             // 
+            // cms_PathRightMenu
+            // 
+            this.cms_PathRightMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_DeletePath});
+            this.cms_PathRightMenu.Name = "cms_PathRightMenu";
+            this.cms_PathRightMenu.Size = new System.Drawing.Size(108, 26);
+            // 
+            // btn_DeletePath
+            // 
+            this.btn_DeletePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btn_DeletePath.Name = "btn_DeletePath";
+            this.btn_DeletePath.Size = new System.Drawing.Size(107, 22);
+            this.btn_DeletePath.Text = "Delete";
+            this.btn_DeletePath.Click += new System.EventHandler(this.btn_DeletePath_Click);
+            // 
             // txt_NewPath
             // 
             this.txt_NewPath.Location = new System.Drawing.Point(12, 399);
@@ -77,21 +92,6 @@
             this.btn_BrowsePath.UseVisualStyleBackColor = true;
             this.btn_BrowsePath.Click += new System.EventHandler(this.btn_BrowsePath_Click);
             // 
-            // cms_PathRightMenu
-            // 
-            this.cms_PathRightMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_DeletePath});
-            this.cms_PathRightMenu.Name = "cms_PathRightMenu";
-            this.cms_PathRightMenu.Size = new System.Drawing.Size(108, 26);
-            // 
-            // btn_DeletePath
-            // 
-            this.btn_DeletePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn_DeletePath.Name = "btn_DeletePath";
-            this.btn_DeletePath.Size = new System.Drawing.Size(107, 22);
-            this.btn_DeletePath.Text = "Delete";
-            this.btn_DeletePath.Click += new System.EventHandler(this.btn_DeletePath_Click);
-            // 
             // frmPaths
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -105,6 +105,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximumSize = new System.Drawing.Size(411, 513);
+            this.MinimumSize = new System.Drawing.Size(411, 513);
             this.Name = "frmPaths";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Paths";

@@ -115,7 +115,7 @@ namespace DWriterDetect
                     }
 
                     string name = txt_SaveName.Text.Replace(" ", "_");
-                    string target = $"{txt_SavePath.Text.Trim()}\\{toDay}\\{pc.GetHour(DateTime.Now)}_{pc.GetMinute(DateTime.Now)}_{pc.GetSecond(DateTime.Now)}__{name}\\";
+                    string target = $"{txt_SavePath.Text.Trim()}\\{toDay}_DWD\\{pc.GetHour(DateTime.Now)}_{pc.GetMinute(DateTime.Now)}_{pc.GetSecond(DateTime.Now)}__{name}\\";
                     sourcePath = dvdRoot;
                     targetPath = target;
                     btn_Save.Text = "Cancel";
@@ -185,8 +185,6 @@ namespace DWriterDetect
                         this.Invoke(new Action(() => { btn_Save.Text = "Save"; }));
                         this.Invoke(new Action(() => { pgb_SaveFolderProgress.Value = 0; }));
                         this.Invoke(new Action(() => { pgb_SaveFileProgress.Value = 0; }));
-                        Application.Restart();
-                        Environment.Exit(0);
                         return;
                     }
                     Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
@@ -208,8 +206,6 @@ namespace DWriterDetect
                         this.Invoke(new Action(() => { btn_Save.Text = "Save"; }));
                         this.Invoke(new Action(() => { pgb_SaveFolderProgress.Value = 0; }));
                         this.Invoke(new Action(() => { pgb_SaveFileProgress.Value = 0; }));
-                        Application.Restart();
-                        Environment.Exit(0);
                         return;
                     }
                     File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
@@ -224,6 +220,8 @@ namespace DWriterDetect
                 }
 
                 this.Invoke(new Action(() => { ctx_CurrentFile.Text = "Files loaded!"; }));
+
+
                 this.Invoke(new Action(() => { btn_Save.Text = "Save"; }));
                 this.Invoke(new Action(() => { pgb_SaveFolderProgress.Value = 0; }));
                 this.Invoke(new Action(() => { pgb_SaveFileProgress.Value = 0; }));
